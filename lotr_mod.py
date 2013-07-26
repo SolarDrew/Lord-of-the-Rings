@@ -245,7 +245,7 @@ def standard_loop(buttons):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 for button in buttons:
                     if button.rect.collidepoint(pos):
-                        if event.button == 3:
+                        if event.button == 3: # If right mouse-button clicked.
                             return button, True
                         else:
                             return button, False
@@ -435,7 +435,7 @@ def replace_symbols(text, fillcol, textcol):
         textsurf.blit(output.image, output.rect)
     textrect = textrect.clip(pygame.Rect(0, textrect.height-max(heights),
                                          cursor, max(heights)))
-    print textrect.width
+    #print textrect.width
     return textsurf, textrect, None
 
 # -----------------
@@ -1030,10 +1030,11 @@ def scene_event(char, scenario, event_number, ring_bearer):
 
 # -----------------
 # Call Gandalf function
-# Doesn't actually do anything yet
 def call_gandalf():
-        print_scr(['Unfortunately, Gandalf has wandered off', 
-         'Try again later'])
+    """
+    Function to implement and discard a Gandalf card. Not up and running yet.
+    """
+    print_scr(['Unfortunately, Gandalf has wandered off', 'Try again later'])
 
 # -----------------
 # Start of go stuff. Because it may as well be here.
