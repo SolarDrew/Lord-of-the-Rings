@@ -159,7 +159,7 @@ class event_tile(displayObject):
 
 # --------------------
 # Activity line template.
-class actline:
+class actline():
     def __init__(self, scene, linename):
         self.name = linename
         self.pos = 0
@@ -169,7 +169,7 @@ class actline:
 
 # -----------------
 # Scenario template.
-class scenario:
+class scenario():
     def __init__(self, scenename, events_list):
         self.board = scenarioBoard(scenename)
         self.name = scenename
@@ -961,76 +961,18 @@ def scene_event(char, scenario, event_number, ring_bearer):
         while 1:
             action = choose_option(char.name+', what would you like to do?',
                                    options, scenario, box_col=char.displaycolour)
-            if action == len(options)-1:
-                while 2:
-                    other_options = ['Play a yellow card', 'Put the Ring on']
-                    """
-                    g = 'n'
-                    for i in players:
-                        if i.shields >= 5:
-                            g = 'y'
-                            break
-                    if g == 'y':
-                        other_options.append('Call Gandalf')
-                    """
-                    action2 = choose_option('What would you like to do?',
-                                            other_options, scenario,
-                                            box_col=char.displaycolour)
-                if action2 == 0:
-                    yellow()
-                if action2 == 1:
-                    if ring_bearer.ring != True:
-                        print_scr(['The Ring-bearer must [blacksquare]'])
-                        r = dice(ring_bearer, scenario)
-                        ring(r, scenario)
-                        ring_bearer.ring = True
-                        if scenario.main.pos >= scenario.main.end:
-                            return 'end'
-                    else:
-                        print_scr(['The Ring-bearer is already wearing the Ring',
-                         'It will be removed at the end of the current scenario'])
-                """
-                if action2 == 2:
-                    sh_pl = choose_player()
-                    while 2:
-                        print "Which of Gandalf's abilities would you like to use? [Pick a number]"
-                        for j, ability in enumerate(gandalfs):
-                            print j, ':', ability.name, '(', ability.description, ')'
-                        try:
-                            g = input()
-                        except:
-                            print 'Please type in a number between 0 and', len(gandalfs)-1, '.'
-                            continue
-                        if g > len(gandalfs)-1:
-                            print "That's not an available option. Pick a number between 0 and", len(options)-1, '.'
-                            continue
-                        break
-                    sh_pl.shields = sh_pl.shields - 5
-                    gand = gandalfs[g]
-                    if gand == magic:
-                        print 'The current event has been ignored.'
-                        gandalfs.remove(magic)
-                        return
-                    elif gand == guidance:
-                        gand(char, scenario)
-                    else:
-                        gand()
-                    
-                    gandalfs.remove(gand)
-                """
-            else:
-                event = this_event[action](char, scenario)
-                if event == 'next':
-                    return event
-                if event == 'loop':
-                    continue
-                if event == 'features':
-                    return event
-                break
+            event = this_event[action](char, scenario)
+            if event == 'next':
+                return event
+            if event == 'loop':
+                continue
+            if event == 'features':
+                return event
+            break
 
 # -----------------
 # Call Gandalf function
-def call_gandalf():
+def choose_gandalf():
     """
     Function to implement and discard a Gandalf card. Not up and running yet.
     """

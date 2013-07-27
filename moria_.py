@@ -166,22 +166,23 @@ options3 = ['Reveal a card[null]', '[eye] and [sundial]']
 ####
 
 # Trapped?
-def otherwise4(char, scenario, bear=ring_bearer):
-    if scenario.hiding.pos < 7 or scenario.travelling.pos < 7:
+def otherwise4(char, scenario):
+    pass
+
+def main_option4(char, scenario, bear=ring_bearer):
+    hide_left = 7 - scenario.hiding.pos
+    trav_left = 7 - scenario.travelling.pos
+    if hide_left > 0 or trav_left > 0:
+        print_scr(['The [hiding] line has {} spaces left'.format(hide_left),
+                   'The [travelling] line has {} spaces left'.format(trav_left),
+                   '[eye][eye] and Ring-bearer [blacksquare]'])
         sau.move_sauron(2)
         dice(bear, scenario)
     else:
-        print_scr(['The Travelling and Hiding lines are complete',
+        print_scr(['The [travelling] and [hiding] lines are complete',
                    'Nothing happens'])
 
-def main_option4(char, scenario):
-    print_scr(['The [hiding] line has '+str(7-scenario.hiding.pos)+ \
-                ' spaces left',
-               'The [travelling] line has '+str(7-scenario.travelling.pos)+ \
-                ' spaces left'])
-    return 'loop'
-
-options4 = ["Ok, [eye][eye] and [blacksquare]"]
+options4 = ["Ok"]
 
 ####
 
