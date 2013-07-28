@@ -252,12 +252,12 @@ def standard_loop(buttons):
 
 # -----------------
 # 
-def choose_button(char, extra_buttons):
+def choose_button(char, extra_buttons, scene=None):
     buttons = extra_buttons + current_options
     while 1:
         for button in buttons:
             screen.blit(button.image, button.rect)
-        update_screen()
+        update_screen(scene)
         selected, right_click = standard_loop(buttons)
         if selected == ring_button:
             if ring_bearer.ring != True:
@@ -952,7 +952,7 @@ def scene_event(char, scenario, event_number, ring_bearer):
     wait(1000)
     print_scr(['You may make preparations for the event,',
                'or click the scenario board to continue'])
-    choose_button(char, [scenario.board])
+    choose_button(char, [scenario.board], scenario)
     options = this_event[2]
     
     if event_type == 'each player':
@@ -996,9 +996,10 @@ def start_go(scenario, active_player):
     #selected, right_click = standard_loop(start_options)
     #if selected == tile_button:
     #    return
-    selected = None
-    while selected != tile_button:
-        selected = choose_button(active_player, [tile_button])
+    #selected = None
+    #while selected != tile_button:
+        #selected = choose_button(active_player, [tile_button])
+    choose_button(active_player, [tile_button], scenario)
     """
     elif selected == ring_button:
         if ring_bearer.ring != True:
@@ -1067,7 +1068,7 @@ def end_go(scenario, active_player):
     print_scr(['Click the master board to [whitecircle]',
                'Click the scenario board to play cards',
                'Click the Hobbit deck to draw 2 cards'])
-    selected = choose_button(active_player, endgo_buttons)
+    selected = choose_button(active_player, endgo_buttons, scenario)
     if selected == scenario.board:
         old_colour = None
         for played in range(2):
