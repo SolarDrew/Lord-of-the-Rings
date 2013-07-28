@@ -207,7 +207,7 @@ def main_option5(char, scenario):
             if card.symbol == 'fighting' or card.symbol == 'joker' or \
              card.isfrodojoker:
                 available = available + card.value
-    if (available < n_to_discard and guide_available == False) or (guide_available == True and available < (n_to_discard-2)):
+    if (available < n_to_discard):# and guide_available == False) or (guide_available == True and available < (n_to_discard-2)):
         print_scr(['You do not have enough fightings to discard'])
         otherwise5(char, scenario)
         return

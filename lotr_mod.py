@@ -273,7 +273,7 @@ def choose_button(char, extra_buttons):
                            'It will be removed at the end of the current scenario'])
             #return 'more tiles'
         elif selected == gandalf_button:
-            call_gandalf()
+            choose_gandalf()
             #return 'more tiles'
         #elif selected == hobbit_button:
         #    draw_hobbit_card(char, 2)
@@ -950,6 +950,9 @@ def scene_event(char, scenario, event_number, ring_bearer):
     event_type = this_event[4]
     print_scr(this_event[3])
     wait(1000)
+    print_scr(['You may make preparations for the event,',
+               'or click the scenario board to continue'])
+    choose_button(char, [scenario.board])
     options = this_event[2]
     
     if event_type == 'each player':
